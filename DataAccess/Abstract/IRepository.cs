@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -16,5 +17,7 @@ namespace DataAccess.Abstract
             Task UpdateAsync(T entity);
             Task DeleteAsync(T entity);
             Task SaveChangesAsync();
+            Task<object> FirstOrDefaultAsync(Func<object, bool> value);
+           
     }
 }

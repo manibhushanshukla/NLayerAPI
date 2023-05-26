@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities.Concrete;
+using Entities.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,7 @@ namespace DataAccess.Abstract
 {
     public interface IPlatformUserService
     {
+        Task<PlatformUsers> SuperRegistration(PlatformRegistration register);
+        Task<PlatformUsers> CreatePassword(Platform_CreatePassword create);
     }
 }

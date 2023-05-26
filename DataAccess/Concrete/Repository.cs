@@ -1,8 +1,10 @@
 ﻿using DataAccess.Abstract;
+using Entities.DTO;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +50,26 @@ namespace DataAccess.Concrete
         public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();
+        }
+
+
+        public async Task FirstOrDefaultAsync(Func<object, bool> value)
+        {
+
+            var user = _dbContext.FirstOrDefaultAsync(u => value(u));
+            await SaveChangesAsync();
+            
+        }
+
+        public async Task UpdateAsync(PlatformUsers user)
+        {
+            _dbContext.Update(user);
+            await SaveChangesAsync();
+        }
+
+        Task<object> IRepository<T>.FirstOrDefaultAsync(Func<object, bool> value)
+        {
+            throw new NotImplementedException();
         }
     }
 
