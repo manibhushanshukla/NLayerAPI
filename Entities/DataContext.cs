@@ -1,4 +1,5 @@
 ﻿using Entities.Concrete;
+using Entities.DTO;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,6 @@ namespace DataAccess
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        DbSet<PlatformRegistration> platform_user { get; set; }
+        DbSet<PlatformUsers> platform_user { get; set; }
     }
 }

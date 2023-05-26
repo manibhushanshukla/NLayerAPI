@@ -15,7 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IRepository<PlatformUserService>,Repository<PlatformUserService>>();
+builder.Services.AddScoped<PlatformUserService>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 
 builder.Services.AddDbContext<DataContext>(options =>
 {

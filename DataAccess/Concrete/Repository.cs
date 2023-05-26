@@ -10,9 +10,9 @@ namespace DataAccess.Concrete
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbContext _dbContext;
+        private readonly DataContext _dbContext;
 
-        public Repository(DbContext dbContext)
+        public Repository(DataContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -42,6 +42,11 @@ namespace DataAccess.Concrete
         public async Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
+            await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task SaveChangesAsync()
+        {
             await _dbContext.SaveChangesAsync();
         }
     }

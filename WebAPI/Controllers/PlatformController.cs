@@ -1,4 +1,5 @@
-﻿using Buisness.Service;
+﻿using Buisness.Common;
+using Buisness.Service;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,15 +25,15 @@ namespace WebAPI.Controllers
             {
                 var user = await _userService.SuperRegistration(register);
 
-                //GenricResponse response = new GenricResponse
-                //{
-                //    Response = HttpStatusCode.OK,
-                //    Status = true,
-                //    Data = new { Token = user.PasswordCreationToken, UserId = user.Id },
-                //    Message = $"Successfully Registered and a link to create a password has been sent to your email: {user.Email}"
-                //};
+                GenricResponse response = new GenricResponse
+                {
+                    Response = HttpStatusCode.OK,
+                    Status = true,
+                   // Data = new { Token = user.PasswordCreationToken, UserId = user.Id },
+                    Message = $"Successfully Registered and a link to create a password has been sent to your email: {user.email}"
+                };
 
-                return Ok(user);
+                return Ok(response);
             }
             catch (Exception ex)
             {
